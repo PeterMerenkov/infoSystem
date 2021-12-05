@@ -122,10 +122,13 @@ public class Main {
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
         String modelName = (String) jsonObject.get("name");
-        Integer modelId1 = ((Long) jsonObject.get("id")).intValue();
-        Integer modelId2 = ((Long) jsonObject.get("group.id")).intValue();
+        BigInteger modelId1 = BigInteger.valueOf((Long) jsonObject.get("id"));
+        BigInteger modelId2 = BigInteger.valueOf((Long)((JSONObject)jsonObject.get("group")).get("id"));
+        Integer modelNumber = ((Long)((JSONObject)jsonObject.get("group")).get("number")).intValue();
+        String modelDate = (String) jsonObject.get("date");
 
-        System.out.println(modelId2);
+
+        System.out.println(modelName);
 
         reader.close();
     }
