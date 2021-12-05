@@ -1,25 +1,27 @@
 package mvc;
 
+import java.math.BigInteger;
+
 public class Student {
-    private Integer id;
+    private BigInteger id;
     private String fio;
 
     class Group {
-        private Integer id;
+        private BigInteger id;
         private Integer number;
         private String fac;
 
-        public Group(Integer id, Integer number, String fac) {
+        public Group(BigInteger id, Integer number, String fac) {
             this.id = id;
             this.number = number;
             this.fac = fac;
         }
 
-        public Integer getId() {
+        public BigInteger getId() {
             return id;
         }
 
-        public void setId(Integer id) {
+        public void setId(BigInteger id) {
             this.id = id;
         }
 
@@ -40,17 +42,17 @@ public class Student {
         }
     }
 
-    Student(Integer id1, String fio, Integer id2, Integer number, String fac) {
+    Student(BigInteger id1, String fio, BigInteger id2, Integer number, String fac) {
         this.id = id1;
         this.fio = fio;
         new Group(id2, number, fac);
     }
 
-    public Integer getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
