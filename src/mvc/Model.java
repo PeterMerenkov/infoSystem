@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Model {
     private ArrayList<Student> list = new ArrayList<Student>();
 
-    public void showStudent(int index) {
-        System.out.println(list.get(index));
+    public Student getStudent(int index) {
+        return list.get(index);
     }
 
     public void setStudent(int index, Student student) {
