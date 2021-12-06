@@ -13,8 +13,8 @@ public class Controller {
         this.view = view;
     }
 
-    //command id1 fio id2 number fac date
-    //add 0 1 Пупкин Василий Иванович 2 4 ИАИТ 26.11.2021
+    //command index id1         fio             id2 number fac    date
+    //add       0    1  Пупкин Василий Иванович  2    4    ИАИТ 26.11.2021
     public void command (String str) {
         //str parser begin-------------------
         int i = 0;
