@@ -7,8 +7,9 @@ public class Student {
     private BigInteger id;
     private String fio;
     private Calendar date;
+    private Group group;
 
-    class Group {
+    public class Group {
         private BigInteger id;
         private Integer number;
         private String fac;
@@ -36,7 +37,7 @@ public class Student {
         this.id = id1;
         this.fio = fio;
         this.date = date;
-        new Group(id2, number, fac);
+        group = new Group(id2, number, fac);
     }
 
     public BigInteger getId() { return id; }
@@ -50,6 +51,8 @@ public class Student {
     public Calendar getDate() { return date; }
 
     public void setDate(Calendar date) { this.date = date; }
+
+    public Group getGroup() { return group; }
 
     @Override
     public String toString() {
