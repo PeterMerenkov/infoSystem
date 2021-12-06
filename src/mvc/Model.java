@@ -1,5 +1,9 @@
 package mvc;
 
+import org.json.simple.parser.JSONParser;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Model {
@@ -19,5 +23,10 @@ public class Model {
 
     public void deleteStudent(int index) {
         list.remove(index);
+    }
+
+    public void read(String path) throws FileNotFoundException {
+        JSONParser parser = new JSONParser();
+        FileReader reader = new FileReader(path);
     }
 }
