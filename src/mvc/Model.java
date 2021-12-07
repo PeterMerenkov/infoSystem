@@ -22,6 +22,14 @@ public class Model {
         return null;
     }
 
+    public ArrayList<Student> getStudentList() {
+        return studentList;
+    }
+
+    public ArrayList<Group> getGroupList() {
+        return groupList;
+    }
+
     public void setStudent(int index, Student student) {
         studentList.set(index, student);
     }
