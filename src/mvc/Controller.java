@@ -8,7 +8,7 @@ public class Controller {
     private final Model model;
     private final View view;
 
-    Controller(Model model, View view) {
+    public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
@@ -128,14 +128,13 @@ public class Controller {
         Calendar date = new GregorianCalendar(year, month - 1, day);
         //str parser end-------------------
 
-        switch (command) {
+        /*switch (command) {
             case "get" -> model.getStudent(index);
             case "set" -> model.setStudent(index,
                     new Student(id1, fio, date, id2, number, faculty));
             case "add" -> model.addStudent(index,
                     new Student(id1, fio, date, id2, number, faculty));
             case "delete" -> model.deleteStudent(index);
-            case "show" -> view.show(model.getStudent(index));
-        }
+            case "show" -> view.show(model.getStudent(index));*/
     }
 }
