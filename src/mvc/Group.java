@@ -28,4 +28,13 @@ public class Group {
     public String getFac() { return fac; }
 
     public void setFac(String fac) { this.fac = fac; }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", number=" + number +
+                ", fac='" + fac + '\'' +
+                '}';
+    }
 }

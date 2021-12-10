@@ -29,11 +29,11 @@ public class Main {
         Model model = new Model("D:\\myFiles\\study\\netCracker\\java\\infoSystem\\src\\student.json");
 
         for (int i = 1; i <= 2; i++) {
-            System.out.println(model.getGroup(BigInteger.valueOf(i)).getId());
+            System.out.println(model.getGroup(BigInteger.valueOf(i)));
         }
 
         for (int i = 1; i <= 2; i++) {
-            System.out.println(model.getStudent(BigInteger.valueOf(i)).getStudentId());
+            System.out.println(model.getStudent(BigInteger.valueOf(i)));
         }
     }
 }

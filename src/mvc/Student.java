@@ -2,6 +2,7 @@ package mvc;
 
 import java.math.BigInteger;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Student {
     private BigInteger studentId;
@@ -12,6 +13,8 @@ public class Student {
     Student(String fio, BigInteger groupId) {
         this.fio = fio;
         this.groupId = groupId;
+
+        this.date = new GregorianCalendar();
     }
 
     public BigInteger getStudentId() { return studentId; }
@@ -36,6 +39,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Строка с описанием студента";
+        return "Student{" +
+                "studentId=" + studentId +
+                ", fio='" + fio + '\'' +
+                ", date=" + date.getTime() +
+                ", groupId=" + groupId +
+                '}';
     }
 }
