@@ -1,3 +1,4 @@
+import mvc.Model;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -9,7 +10,7 @@ import java.math.BigInteger;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        JSONParser parser = new JSONParser();
+        /*JSONParser parser = new JSONParser();
         FileReader reader = new FileReader("test.json");
 
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
@@ -23,6 +24,16 @@ public class Main {
 
         System.out.println(modelName);
 
-        reader.close();
+        reader.close();*/
+
+        Model model = new Model("D:\\myFiles\\study\\netCracker\\java\\infoSystem\\src\\student.json");
+
+        for (int i = 1; i <= 2; i++) {
+            System.out.println(model.getGroup(BigInteger.valueOf(i)).getId());
+        }
+
+        for (int i = 1; i <= 2; i++) {
+            System.out.println(model.getStudent(BigInteger.valueOf(i)).getStudentId());
+        }
     }
 }
