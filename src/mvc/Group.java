@@ -26,6 +26,11 @@ public class Group {
 
     public void setFac(String fac) { this.fac = fac; }
 
+    public void set(Group group) {
+        setNumber(group.getNumber());
+        setFac(group.getFac());
+    }
+
     @Override
     public String toString() {
         return "\n{" +

@@ -5,8 +5,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
 
@@ -15,6 +13,16 @@ public class Main {
 
         Model model = new Model("D:\\myFiles\\study\\netCracker\\java\\infoSystem\\src\\student.json");
 
+        /*Group g1 = new Group(2, "someFac");
+        Group g2 = new Group(322, "someSuperFac2");
+
+        model.setGroup(BigInteger.valueOf(3), g2);*/
+
+        Student stud1 = new Student("Иван Иванович Иванов", BigInteger.valueOf(3));
+        Student stud2 = new Student("Борисов Борис Борисович", BigInteger.valueOf(2));
+
+        model.setStudent(BigInteger.valueOf(2), stud2);
+
         for (int i = 1; i <= 2; i++) {
             System.out.println(model.getGroup(BigInteger.valueOf(i)));
         }
@@ -22,11 +30,5 @@ public class Main {
         for (int i = 1; i <= 2; i++) {
             System.out.println(model.getStudent(BigInteger.valueOf(i)));
         }
-
-        Group g1 = new Group(2, "someFac");
-
-        model.addGroup(g1);
-
-        model.write("D:\\myFiles\\study\\netCracker\\java\\infoSystem\\src\\student.json");
     }
 }

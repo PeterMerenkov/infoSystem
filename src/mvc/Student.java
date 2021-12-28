@@ -10,7 +10,7 @@ public class Student {
     private Calendar date;
     private BigInteger groupId;
 
-    Student(String fio, BigInteger groupId) {
+    public Student(String fio, BigInteger groupId) {
         this.fio = fio;
         this.groupId = groupId;
 
@@ -35,6 +35,12 @@ public class Student {
 
     public void setGroupId(BigInteger groupId) {
         this.groupId = groupId;
+    }
+
+    public void set(Student student) {
+        setFio(student.getFio());
+        setGroupId(student.getGroupId());
+        setDate(student.getDate());
     }
 
     @Override
