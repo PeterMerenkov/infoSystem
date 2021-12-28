@@ -7,14 +7,11 @@ public class Group {
     private Integer number;
     private String fac;
 
-    private static BigInteger idGenerator = BigInteger.valueOf(0);
-
     public Group(Integer number, String fac) {
         this.number = number;
         this.fac = fac;
 
-        this.id = idGenerator;
-        idGenerator = idGenerator.add(BigInteger.ONE);
+        this.id = null;
     }
 
     public BigInteger getId() { return id; }
@@ -31,10 +28,10 @@ public class Group {
 
     @Override
     public String toString() {
-        return "Group{" +
-                "id=" + id +
-                ", number=" + number +
-                ", fac='" + fac + '\'' +
-                '}';
+        return "\n{" +
+                "\"groupId\": " + id +
+                ",\"number\": " + number +
+                ",\"fac\": \"" + fac +
+                "\"}";
     }
 }

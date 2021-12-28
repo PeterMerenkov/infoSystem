@@ -1,29 +1,13 @@
-{
-  "students": [
-    {
-      "studentId": 1,
-      "fio": "Василий",
-      "groupId": 321,
-      "date": "26/11/2021"
-    },
-    {
-      "studentId": 2,
-      "fio": "Иван",
-      "groupId": 322,
-      "date": "29/12/2022"
-    }
-  ],
-
-  "groups": [
-    {
-      "groupId": 1,
-      "number": 2,
-      "fac": "ИАИТ"
-    },
-    {
-      "groupId": 2,
-      "number": 3,
-      "fac": "ИАИТ2"
-    }
-  ]
-}
+{"students":[
+{"studentId": 1,"fio": "Василий","date": "26/11/2021","groupId": 2},
+{"studentId": 2,"fio": "Иван","date": "15/12/2022","groupId": 1}],"groups":[
+{"groupId": 1,"number": 2,"fac": "ИАИТ"},
+{"groupId": 2,"number": 3,"fac": "ИАИТ2"},
+{"groupId": 3,"number": 2,"fac": "someFac"},
+{"groupId": 4,"number": 2,"fac": "someFac"},
+{"groupId": 5,"number": 2,"fac": "someFac"},
+{"groupId": 6,"number": 2,"fac": "someFac"},
+{"groupId": 7,"number": 2,"fac": "someFac"},
+{"groupId": 8,"number": 2,"fac": "someFac"},
+{"groupId": 9,"number": 2,"fac": "someFac"},
+{"groupId": 10,"number": 2,"fac": "someFac"}]}

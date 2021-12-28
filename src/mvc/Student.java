@@ -19,7 +19,7 @@ public class Student {
 
     public BigInteger getStudentId() { return studentId; }
 
-    public void setStudentId(BigInteger studentId) { this.studentId = studentId; }
+    public void setId(BigInteger Id) { this.studentId = Id; }
 
     public String getFio() { return fio; }
 
@@ -39,11 +39,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", fio='" + fio + '\'' +
-                ", date=" + date.getTime() +
-                ", groupId=" + groupId +
-                '}';
+        return "\n{" +
+                "\"studentId\": " + studentId +
+                ",\"fio\": \"" + fio +
+                "\",\"date\": \"" + date.get(Calendar.DAY_OF_MONTH) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.YEAR) +
+                "\",\"groupId\": " + groupId +
+                "}";
     }
 }

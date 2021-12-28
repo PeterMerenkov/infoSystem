@@ -1,4 +1,6 @@
+import mvc.Group;
 import mvc.Model;
+import mvc.Student;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -10,21 +12,6 @@ import java.math.BigInteger;
 
 public class Main {
     public static void main(String[] args) throws IOException, ParseException {
-        /*JSONParser parser = new JSONParser();
-        FileReader reader = new FileReader("test.json");
-
-        JSONObject jsonObject = (JSONObject) parser.parse(reader);
-
-        String modelName = (String) jsonObject.get("name");
-        BigInteger modelId1 = BigInteger.valueOf((Long) jsonObject.get("id"));
-        BigInteger modelId2 = BigInteger.valueOf((Long)((JSONObject)jsonObject.get("group")).get("id"));
-        Integer modelNumber = ((Long)((JSONObject)jsonObject.get("group")).get("number")).intValue();
-        String modelDate = (String) jsonObject.get("date");
-
-
-        System.out.println(modelName);
-
-        reader.close();*/
 
         Model model = new Model("D:\\myFiles\\study\\netCracker\\java\\infoSystem\\src\\student.json");
 
@@ -35,5 +22,11 @@ public class Main {
         for (int i = 1; i <= 2; i++) {
             System.out.println(model.getStudent(BigInteger.valueOf(i)));
         }
+
+        Group g1 = new Group(2, "someFac");
+
+        model.addGroup(g1);
+
+        model.write("D:\\myFiles\\study\\netCracker\\java\\infoSystem\\src\\student.json");
     }
 }
