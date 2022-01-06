@@ -1,7 +1,13 @@
 {"students":[
 {"studentId": 1,"fio": "Василий","date": "26/11/2021","groupId": 2},
 {"studentId": 2,"fio": "Иван","date": "15/12/2022","groupId": 1},
-{"studentId": 3,"fio": "Иван Иванович Иванов","date": "28/12/2021","groupId": 3},
-{"studentId": 4,"fio": "Борисов Борис Борисович","date": "28/12/2021","groupId": 2}],"groups":[
+{"studentId": 4,"fio": "Борисов Борис Борисович","date": "6/1/2022","groupId": 2},
+{"studentId": 5,"fio": "Иван Иванович Иванов","date": "6/1/2022","groupId": 3},
+{"studentId": 6,"fio": "Борисов Борис Борисович","date": "6/1/2022","groupId": 2}],"groups":[
 {"groupId": 1,"number": 2,"fac": "ИАИТ"},
-{"groupId": 2,"number": 3,"fac": "ИАИТ2"}]}
+{"groupId": 2,"number": 3,"fac": "ИАИТ2"},
+{"groupId": 4,"number": 322,"fac": "someSuperFac2"},
+{"groupId": 5,"number": 2,"fac": "someFac"},
+{"groupId": 6,"number": 322,"fac": "someSuperFac2"},
+{"groupId": 7,"number": 2,"fac": "someFac"},
+{"groupId": 8,"number": 322,"fac": "someSuperFac2"}]}
