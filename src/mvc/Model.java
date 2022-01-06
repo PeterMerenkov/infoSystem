@@ -16,8 +16,8 @@ public class Model {
     private ArrayList<Student> studentList = new ArrayList<>();
     private ArrayList<Group> groupList = new ArrayList<>();
 
-    private BigInteger studIdGen; // TODO СДЕЛАТЬ НА ОСНОВЕ БОЛЬШЕГО ID
-    private BigInteger groupIdGen; // TODO СДЕЛАТЬ НА ОСНОВЕ БОЛЬШЕГО ID
+    private BigInteger studIdGen;
+    private BigInteger groupIdGen;
 
     private String path;
 
@@ -56,17 +56,21 @@ public class Model {
             studentList.add(tempStudent);
         }
 
-        // поиск большего через циклы for
-
         BigInteger studBiggerId = BigInteger.ZERO;
         for (int i = 0; i < studentList.size(); i++) {
-            if (studBiggerId.compareTo(studentList.get(i).getStudentId()) > 0)  {
+            if (studBiggerId.compareTo(studentList.get(i).getStudentId()) < 0)  {
                 studBiggerId = studentList.get(i).getStudentId();
             }
         }
         studIdGen = studBiggerId;
 
-        groupIdGen = BigInteger.valueOf(groupList.size());
+        BigInteger groupBiggerId = BigInteger.ZERO;
+        for (int i = 0; i < groupList.size(); i++) {
+            if (groupBiggerId.compareTo(groupList.get(i).getId()) < 0)  {
+                groupBiggerId = groupList.get(i).getId();
+            }
+        }
+        groupIdGen = groupBiggerId;
 
         reader.close();
     }
@@ -105,11 +109,7 @@ public class Model {
     }
 
     public void deleteStudent(BigInteger id) {
-        studIdGen = studIdGen.subtract(BigInteger.ONE);
-
-        studentList.remove(studentList.size() - 1);
-
-        studentList.remove(getStudent(id)); //todo оверрайд equals, может быть хеш код
+        studentList.remove(getStudent(id));
 
         write(path);
     }
@@ -139,10 +139,8 @@ public class Model {
         write(path);
     }
 
-    public void deleteGroup() {
-        groupIdGen = groupIdGen.subtract(BigInteger.ONE);
-
-        groupList.remove(groupList.get(groupList.size() - 1));
+    public void deleteGroup(BigInteger id) {
+        groupList.remove(getGroup(id));
 
         write(path);
     }
