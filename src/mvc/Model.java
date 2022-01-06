@@ -16,8 +16,8 @@ public class Model {
     private ArrayList<Student> studentList = new ArrayList<>();
     private ArrayList<Group> groupList = new ArrayList<>();
 
-    private BigInteger studIdGen;
-    private BigInteger groupIdGen;
+    private BigInteger studIdGen; // TODO СДЕЛАТЬ НА ОСНОВЕ БОЛЬШЕГО ID
+    private BigInteger groupIdGen; // TODO СДЕЛАТЬ НА ОСНОВЕ БОЛЬШЕГО ID
 
     private String path;
 
@@ -56,7 +56,16 @@ public class Model {
             studentList.add(tempStudent);
         }
 
-        studIdGen = BigInteger.valueOf(studentList.size());
+        // поиск большего через циклы for
+
+        BigInteger studBiggerId = BigInteger.ZERO;
+        for (int i = 0; i < studentList.size(); i++) {
+            if (studBiggerId.compareTo(studentList.get(i).getStudentId()) > 0)  {
+                studBiggerId = studentList.get(i).getStudentId();
+            }
+        }
+        studIdGen = studBiggerId;
+
         groupIdGen = BigInteger.valueOf(groupList.size());
 
         reader.close();
@@ -95,10 +104,12 @@ public class Model {
         write(path);
     }
 
-    public void deleteStudent() {
+    public void deleteStudent(BigInteger id) {
         studIdGen = studIdGen.subtract(BigInteger.ONE);
 
         studentList.remove(studentList.size() - 1);
+
+        studentList.remove(getStudent(id)); //todo оверрайд equals, может быть хеш код
 
         write(path);
     }
@@ -158,12 +169,11 @@ public class Model {
         }
     }
 
-    public void save() {
-        write("studentResCopy.json");
+    public void save(String path) {
+        write(path);
     }
 
-    public void load() throws IOException, ParseException {
-        String resCopyPath = "studentResCopy.json";
+    public void load(String resCopyPath) throws IOException, ParseException {
 
         JSONParser parser = new JSONParser();
         FileReader reader = new FileReader(resCopyPath);

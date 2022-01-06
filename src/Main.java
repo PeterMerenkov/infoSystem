@@ -18,10 +18,13 @@ public class Main {
 
         model.setGroup(BigInteger.valueOf(3), g2);*/
 
+        /*model.load("studentResCopy.json");*/
+
         Student stud1 = new Student("Иван Иванович Иванов", BigInteger.valueOf(3));
         Student stud2 = new Student("Борисов Борис Борисович", BigInteger.valueOf(2));
 
-        model.setStudent(BigInteger.valueOf(2), stud2);
+        /*model.addStudent(stud1);
+        model.addStudent(stud2);*/
 
         for (int i = 1; i <= 2; i++) {
             System.out.println(model.getGroup(BigInteger.valueOf(i)));
@@ -30,5 +33,7 @@ public class Main {
         for (int i = 1; i <= 2; i++) {
             System.out.println(model.getStudent(BigInteger.valueOf(i)));
         }
+
+        System.out.println(model.getStudent(BigInteger.valueOf(3)).equals(model.getStudent(BigInteger.valueOf(4))));
     }
 }
