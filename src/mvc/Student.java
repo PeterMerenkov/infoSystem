@@ -52,4 +52,9 @@ public class Student {
                 "\",\"groupId\": " + groupId +
                 "}";
     }
+
+    public String toStr() {
+        return studentId + " " + fio + " " + groupId + " "
+                + date.get(Calendar.DAY_OF_MONTH) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.YEAR);
+    }
 }
