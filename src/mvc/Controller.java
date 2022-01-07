@@ -4,6 +4,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Scanner;
 
 public class Controller {
     private final Model model;
@@ -14,85 +15,100 @@ public class Controller {
         this.view = view;
     }
 
-    public void command (String str) {
-        String[] strArr = str.split(" ");
+    public void start () {
+        String str;
+        do {
+            Scanner in = new Scanner(System.in);
+            str = in.nextLine();
 
-        String command = strArr[0] + " " + strArr[1];
+            String[] strArr = str.split(" ");
 
-        switch (command) {
-            case "show student" -> {
-                BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
-                view.showStud(model.getStudent(studId).toString());
-            }
-            case "show group" -> {
-                BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[2]));
-                view.showGroup(model.getGroup(groupId).toString());
-            }
-            case "add student" -> {
-                String fio = strArr[2] + " " + strArr[3] + " " + strArr[4];
+            String command = strArr[0] + " " + strArr[1];
 
-                BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[5]));
+            switch (command) {
+                case "show student" -> {
+                    BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    view.showStud(model.getStudent(studId).toStr());
+                }
+                case "show group" -> {
+                    BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    view.showGroup(model.getGroup(groupId).toStr());
+                }
+                case "add student" -> {
+                    String fio = strArr[2] + " " + strArr[3] + " " + strArr[4];
 
-                Student stud = new Student(fio, groupId);
+                    BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[5]));
 
-                model.addStudent(stud);
-            }
-            case "add group" -> {
-                Integer groupNum = Integer.valueOf(strArr[2]);
+                    Student stud = new Student(fio, groupId);
 
-                String fac = strArr[3];
+                    model.addStudent(stud);
+                }
+                case "add group" -> {
+                    Integer groupNum = Integer.valueOf(strArr[2]);
 
-                Group group = new Group(groupNum, fac);
+                    String fac = strArr[3];
 
-                model.addGroup(group);
-            }
-            case "change student" -> {
-                BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    Group group = new Group(groupNum, fac);
 
-                String fio = strArr[3] + " " + strArr[4] + " " + strArr[5];
+                    model.addGroup(group);
+                }
+                case "change student" -> {
+                    BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[6]));
+                    String fio = strArr[3] + " " + strArr[4] + " " + strArr[5];
 
-                Student stud = new Student(fio, groupId);
+                    BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[6]));
 
-                model.setStudent(changeId, stud);
-            }
-            case "change group" -> {
-                BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    Student stud = new Student(fio, groupId);
 
-                Integer groupNum = Integer.valueOf(strArr[3]);
+                    model.setStudent(changeId, stud);
+                }
+                case "change group" -> {
+                    BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                String fac = strArr[4];
+                    Integer groupNum = Integer.valueOf(strArr[3]);
 
-                Group group = new Group(groupNum, fac);
+                    String fac = strArr[4];
 
-                model.setGroup(changeId, group);
-            }
-            case "delete student" -> {
-                BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    Group group = new Group(groupNum, fac);
 
-                model.deleteStudent(id);
-            }
-            case "delete group" -> {
-                BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    model.setGroup(changeId, group);
+                }
+                case "delete student" -> {
+                    BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                model.deleteGroup(id);
-            }
-            case "load resCopy" -> {
-                String path = strArr[2];
+                    model.deleteStudent(id);
+                }
+                case "delete group" -> {
+                    BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                try {
-                    model.load(path);
-                } catch (IOException | ParseException e) {
-                    e.printStackTrace();
+                    model.deleteGroup(id);
+                }
+                case "load resCopy" -> {
+                    String path = strArr[2];
+
+                    try {
+                        model.load(path);
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                case "save resCopy" -> {
+                    String path = strArr[2];
+
+                    model.save(path);
+                }
+                default -> {
+                    if (str == "exit")
+                        System.out.println("Exiting...");
+                    else
+                        System.out.println("Invalid command!");
                 }
             }
-            case "save resCopy" -> {
-                String path = strArr[2];
 
-                model.save(path);
-            }
-        }
+            in.close();
+        } while (!str.equals("exit"));
+
 
     }
 }
