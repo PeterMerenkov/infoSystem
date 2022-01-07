@@ -39,4 +39,8 @@ public class Group {
                 ",\"fac\": \"" + fac +
                 "\"}";
     }
+
+    public String toStr() {
+        return id + " " + number + " " + fac;
+    }
 }
