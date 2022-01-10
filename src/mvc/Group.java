@@ -1,8 +1,9 @@
 package mvc;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class Group {
+public class Group implements Serializable {
     private BigInteger id;
     private Integer number;
     private String fac;
