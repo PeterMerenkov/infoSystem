@@ -1,0 +1,7 @@
+{"students":[
+{"studentId": 1,"fio": "Василий","date": "26/11/2021","groupId": 2},
+{"studentId": 2,"fio": "Иван","date": "15/12/2022","groupId": 1},
+{"studentId": 3,"fio": "Иван Иванович Иванов","date": "28/12/2021","groupId": 3},
+{"studentId": 4,"fio": "Борисов Борис Борисович","date": "28/12/2021","groupId": 2}],"groups":[
+{"groupId": 1,"number": 2,"fac": "ИАИТ"},
+{"groupId": 2,"number": 3,"fac": "ИАИТ2"}]}

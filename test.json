@@ -1,0 +1,29 @@
+{
+  "students": [
+    {
+      "studentId": 1,
+      "fio": "Василий",
+      "groupId": 321,
+      "date": "26/11/2021"
+    },
+    {
+      "studentId": 2,
+      "fio": "Иван",
+      "groupId": 322,
+      "date": "15/12/2022"
+    }
+  ],
+
+  "groups": [
+    {
+      "groupId": 1,
+      "number": 2,
+      "fac": "ИАИТ"
+    },
+    {
+      "groupId": 2,
+      "number": 3,
+      "fac": "ИАИТ2"
+    }
+  ]
+}
