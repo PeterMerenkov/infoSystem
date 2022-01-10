@@ -1,10 +1,11 @@
 package mvc;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Student {
+public class Student implements Serializable {
     private BigInteger studentId;
     private String fio;
     private Calendar date;

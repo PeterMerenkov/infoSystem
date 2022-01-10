@@ -5,14 +5,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Model {
+public class Model implements Serializable {
     private ArrayList<Student> studentList = new ArrayList<>();
     private ArrayList<Group> groupList = new ArrayList<>();
 
@@ -21,13 +19,22 @@ public class Model {
 
     private String path;
 
-    public Model(String path) throws IOException, ParseException {
+    public Model(String path) throws IOException, ParseException  {
         this.path = path;
 
-        JSONParser parser = new JSONParser();
         FileReader reader = new FileReader(path);
 
-        JSONObject rootJsonObject = (JSONObject) parser.parse(reader);
+        /*FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);*/
+
+        JSONParser parser = new JSONParser();
+
+        JSONObject rootJsonObject = null;
+        /*try {*/
+            rootJsonObject = (JSONObject) parser.parse(reader);
+        /*} catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }*/
 
         JSONArray groupJSONArr = (JSONArray) rootJsonObject.get("groups");
 
@@ -156,6 +163,19 @@ public class Model {
 
         root.put("students", studs);
         root.put("groups", groups);
+
+       /* try {
+            FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fos);
+
+            objectOutputStream.writeObject(root);
+
+            objectOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+
 
         try {
             try (FileWriter file = new FileWriter(path)) {

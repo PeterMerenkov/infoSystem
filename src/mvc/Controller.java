@@ -16,23 +16,54 @@ public class Controller {
     }
 
     public void start () {
+        System.out.println("Greetings message!" + "\n\n");
+        view.help();
+
         String str;
         do {
+            System.out.print("Input your command: ");
             Scanner in = new Scanner(System.in);
             str = in.nextLine();
 
             String[] strArr = str.split(" ");
 
-            String command = strArr[0] + " " + strArr[1];
+            String command;
+
+            if (strArr.length >= 2)
+                command = strArr[0] + " " + strArr[1];
+            else
+                command = strArr[0];
 
             switch (command) {
+                case "showAll students" -> {
+                    System.out.println();
+                    view.showStudHeader();
+                    for (int i = 0; i < model.getStudentList().size(); i++) {
+                        view.showStud(model.getStudentList().get(i).toStr());
+                    }
+                    System.out.println();
+                }
+                case "showAll groups" -> {
+                    System.out.println();
+                    view.showGroupHeader();
+                    for (int i = 0; i < model.getGroupList().size(); i++) {
+                        view.showGroup(model.getGroupList().get(i).toStr());
+                    }
+                    System.out.println();
+                }
                 case "show student" -> {
                     BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    System.out.println();
+                    view.showStudHeader();
                     view.showStud(model.getStudent(studId).toStr());
+                    System.out.println();
                 }
                 case "show group" -> {
                     BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    System.out.println();
+                    view.showGroupHeader();
                     view.showGroup(model.getGroup(groupId).toStr());
+                    System.out.println();
                 }
                 case "add student" -> {
                     String fio = strArr[2] + " " + strArr[3] + " " + strArr[4];
@@ -42,6 +73,8 @@ public class Controller {
                     Student stud = new Student(fio, groupId);
 
                     model.addStudent(stud);
+
+                    System.out.println("\nStudent was successfully added! Checkout w \"showAll students\"!\n");
                 }
                 case "add group" -> {
                     Integer groupNum = Integer.valueOf(strArr[2]);
@@ -51,6 +84,8 @@ public class Controller {
                     Group group = new Group(groupNum, fac);
 
                     model.addGroup(group);
+
+                    System.out.println("\nGroup was successfully added! Checkout w \"showAll groups\"!\n");
                 }
                 case "change student" -> {
                     BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
@@ -99,14 +134,14 @@ public class Controller {
                     model.save(path);
                 }
                 default -> {
-                    if (str == "exit")
+                    if (str.equals("exit"))
                         System.out.println("Exiting...");
                     else
                         System.out.println("Invalid command!");
                 }
             }
 
-            in.close();
+            /*in.close();*/
         } while (!str.equals("exit"));
 
 
