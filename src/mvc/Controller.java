@@ -36,20 +36,10 @@ public class Controller {
 
             switch (command) {
                 case "showAll students" -> {
-                    System.out.println();
-                    view.showStudHeader();
-                    for (int i = 0; i < model.getStudentList().size(); i++) {
-                        view.showStud(model.getStudentList().get(i).toStr());
-                    }
-                    System.out.println();
+                    showAllStuds();
                 }
                 case "showAll groups" -> {
-                    System.out.println();
-                    view.showGroupHeader();
-                    for (int i = 0; i < model.getGroupList().size(); i++) {
-                        view.showGroup(model.getGroupList().get(i).toStr());
-                    }
-                    System.out.println();
+                    showAllGroups();
                 }
                 case "show student" -> {
                     BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
@@ -74,7 +64,8 @@ public class Controller {
 
                     model.addStudent(stud);
 
-                    System.out.println("\nStudent was successfully added! Checkout w \"showAll students\"!\n");
+                    System.out.println("\nStudent was successfully added!");
+                    showAllStuds();
                 }
                 case "add group" -> {
                     Integer groupNum = Integer.valueOf(strArr[2]);
@@ -85,7 +76,8 @@ public class Controller {
 
                     model.addGroup(group);
 
-                    System.out.println("\nGroup was successfully added! Checkout w \"showAll groups\"!\n");
+                    System.out.println("\nGroup was successfully added!");
+                    showAllGroups();
                 }
                 case "change student" -> {
                     BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
@@ -97,6 +89,9 @@ public class Controller {
                     Student stud = new Student(fio, groupId);
 
                     model.setStudent(changeId, stud);
+
+                    System.out.println("\nStudent was successfully changed!");
+                    showAllStuds();
                 }
                 case "change group" -> {
                     BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
@@ -108,16 +103,25 @@ public class Controller {
                     Group group = new Group(groupNum, fac);
 
                     model.setGroup(changeId, group);
+
+                    System.out.println("\nGroup was successfully changed!");
+                    showAllGroups();
                 }
                 case "delete student" -> {
                     BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
                     model.deleteStudent(id);
+
+                    System.out.println("\nStudent was successfully deleted!");
+                    showAllStuds();
                 }
                 case "delete group" -> {
                     BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
                     model.deleteGroup(id);
+
+                    System.out.println("\nGroup was successfully deleted!");
+                    showAllGroups();
                 }
                 case "load resCopy" -> {
                     String path = strArr[2];
@@ -127,23 +131,45 @@ public class Controller {
                     } catch (IOException | ParseException e) {
                         e.printStackTrace();
                     }
+
+                    System.out.println("\nReserve copy was successfully loaded!");
+                    showAllStuds();
+                    showAllGroups();
                 }
                 case "save resCopy" -> {
                     String path = strArr[2];
 
                     model.save(path);
+
+                    System.out.println("\nReserve copy was successfully saved!\n");
                 }
                 default -> {
                     if (str.equals("exit"))
-                        System.out.println("Exiting...");
+                        System.out.println("\nExiting...\n");
                     else
-                        System.out.println("Invalid command!");
+                        System.out.println("\nInvalid command!\n");
                 }
             }
 
             /*in.close();*/
         } while (!str.equals("exit"));
+    }
 
+    private void showAllStuds() {
+        System.out.println();
+        view.showStudHeader();
+        for (int i = 0; i < model.getStudentList().size(); i++) {
+            view.showStud(model.getStudentList().get(i).toStr());
+        }
+        System.out.println();
+    }
 
+    private void showAllGroups(){
+        System.out.println();
+        view.showGroupHeader();
+        for (int i = 0; i < model.getGroupList().size(); i++) {
+            view.showGroup(model.getGroupList().get(i).toStr());
+        }
+        System.out.println();
     }
 }
