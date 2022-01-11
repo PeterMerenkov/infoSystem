@@ -19,22 +19,26 @@ public class Model implements Serializable {
 
     private String path;
 
-    public Model(String path) throws IOException, ParseException  {
+    public Model(String path) throws IOException  {
         this.path = path;
 
-        FileReader reader = new FileReader(path);
-
-        /*FileInputStream fis = new FileInputStream(path);
-        ObjectInputStream ois = new ObjectInputStream(fis);*/
+        FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);
 
         JSONParser parser = new JSONParser();
 
         JSONObject rootJsonObject = null;
-        /*try {*/
-            rootJsonObject = (JSONObject) parser.parse(reader);
-        /*} catch (ClassNotFoundException e) {
+        try {
+            rootJsonObject = (JSONObject) ois.readObject();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
+
+        try {
+            rootJsonObject = (JSONObject) parser.parse(rootJsonObject.toJSONString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         JSONArray groupJSONArr = (JSONArray) rootJsonObject.get("groups");
 
@@ -78,8 +82,6 @@ public class Model implements Serializable {
             }
         }
         groupIdGen = groupBiggerId;
-
-        reader.close();
     }
 
     public ArrayList<Student> getStudentList() {
@@ -164,7 +166,7 @@ public class Model implements Serializable {
         root.put("students", studs);
         root.put("groups", groups);
 
-       /* try {
+        try {
             FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fos);
 
@@ -173,18 +175,8 @@ public class Model implements Serializable {
             objectOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-
-
-
-        try {
-            try (FileWriter file = new FileWriter(path)) {
-                file.write(root.toJSONString());
-                file.flush();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
     }
 
     public void save(String path) {
