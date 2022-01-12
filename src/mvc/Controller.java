@@ -227,8 +227,6 @@ public class Controller {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
                 }
             }
-
-            /*in.close();*/
         } while (!str.equals("exit"));
     }
 
