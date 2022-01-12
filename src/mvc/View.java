@@ -55,6 +55,7 @@ public class View {
     public void help() {
         System.out.println(
                 "List of the commands:" + "\n"
+                        + " - help" + "\n"
                         + " - showAll students" + "\n"
                         + " - showAll groups" + "\n"
                         + " - show student (ID)"  + "\n"

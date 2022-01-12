@@ -28,15 +28,10 @@ public class Model implements Serializable {
         JSONParser parser = new JSONParser();
 
         JSONObject rootJsonObject = null;
-        try {
-            rootJsonObject = (JSONObject) ois.readObject();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
         try {
-            rootJsonObject = (JSONObject) parser.parse(rootJsonObject.toJSONString());
-        } catch (ParseException e) {
+            rootJsonObject = (JSONObject) parser.parse(((JSONObject) ois.readObject()).toJSONString());
+        } catch (ParseException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

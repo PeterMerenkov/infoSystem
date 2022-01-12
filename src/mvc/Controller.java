@@ -35,119 +35,196 @@ public class Controller {
                 command = strArr[0];
 
             switch (command) {
+                case "help" -> {
+                    if (strArr.length == 1) {
+                        view.help();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
+                }
                 case "showAll students" -> {
-                    showAllStuds();
+                    if (strArr.length == 2) {
+                        showAllStuds();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
+
                 }
                 case "showAll groups" -> {
+                    if (strArr.length == 2) {
+
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
+
                     showAllGroups();
                 }
                 case "show student" -> {
-                    BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
-                    System.out.println();
-                    view.showStudHeader();
-                    view.showStud(model.getStudent(studId).toStr());
-                    System.out.println();
+                    if (strArr.length == 3) {
+                        BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+
+                        System.out.println();
+
+                        view.showStudHeader();
+                        view.showStud(model.getStudent(studId).toStr());
+
+                        System.out.println();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "show group" -> {
-                    BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[2]));
-                    System.out.println();
-                    view.showGroupHeader();
-                    view.showGroup(model.getGroup(groupId).toStr());
-                    System.out.println();
+                    if (strArr.length == 3) {
+                        BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+
+                        System.out.println();
+
+                        view.showGroupHeader();
+                        view.showGroup(model.getGroup(groupId).toStr());
+
+                        System.out.println();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "add student" -> {
-                    String fio = strArr[2] + " " + strArr[3] + " " + strArr[4];
+                    if (strArr.length == 6) {
+                        String fio = strArr[2] + " " + strArr[3] + " " + strArr[4];
 
-                    BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[5]));
+                        BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[5]));
 
-                    Student stud = new Student(fio, groupId);
+                        Student stud = new Student(fio, groupId);
 
-                    model.addStudent(stud);
+                        model.addStudent(stud);
 
-                    System.out.println("\nStudent was successfully added!");
-                    showAllStuds();
+                        System.out.println("\nStudent was successfully added!");
+                        showAllStuds();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "add group" -> {
-                    Integer groupNum = Integer.valueOf(strArr[2]);
+                    if (strArr.length == 6) {
+                        Integer groupNum = Integer.valueOf(strArr[2]);
 
-                    String fac = strArr[3];
+                        String fac = strArr[3];
 
-                    Group group = new Group(groupNum, fac);
+                        Group group = new Group(groupNum, fac);
 
-                    model.addGroup(group);
+                        model.addGroup(group);
 
-                    System.out.println("\nGroup was successfully added!");
-                    showAllGroups();
+                        System.out.println("\nGroup was successfully added!");
+                        showAllGroups();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "change student" -> {
-                    BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    if (strArr.length == 7) {
+                        BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                    String fio = strArr[3] + " " + strArr[4] + " " + strArr[5];
+                        String fio = strArr[3] + " " + strArr[4] + " " + strArr[5];
 
-                    BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[6]));
+                        BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[6]));
 
-                    Student stud = new Student(fio, groupId);
+                        Student stud = new Student(fio, groupId);
 
-                    model.setStudent(changeId, stud);
+                        model.setStudent(changeId, stud);
 
-                    System.out.println("\nStudent was successfully changed!");
-                    showAllStuds();
+                        System.out.println("\nStudent was successfully changed!");
+                        showAllStuds();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "change group" -> {
-                    BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    if (strArr.length == 7) {
+                        BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                    Integer groupNum = Integer.valueOf(strArr[3]);
+                        Integer groupNum = Integer.valueOf(strArr[3]);
 
-                    String fac = strArr[4];
+                        String fac = strArr[4];
 
-                    Group group = new Group(groupNum, fac);
+                        Group group = new Group(groupNum, fac);
 
-                    model.setGroup(changeId, group);
+                        model.setGroup(changeId, group);
 
-                    System.out.println("\nGroup was successfully changed!");
-                    showAllGroups();
+                        System.out.println("\nGroup was successfully changed!");
+                        showAllGroups();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "delete student" -> {
-                    BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    if (strArr.length == 3) {
+                        BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                    model.deleteStudent(id);
+                        model.deleteStudent(id);
 
-                    System.out.println("\nStudent was successfully deleted!");
-                    showAllStuds();
+                        System.out.println("\nStudent was successfully deleted!");
+                        showAllStuds();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "delete group" -> {
-                    BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
+                    if (strArr.length == 3) {
+                        BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                    model.deleteGroup(id);
+                        model.deleteGroup(id);
 
-                    System.out.println("\nGroup was successfully deleted!");
-                    showAllGroups();
+                        System.out.println("\nGroup was successfully deleted!");
+                        showAllGroups();
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "load resCopy" -> {
-                    String path = strArr[2];
+                    if (strArr.length == 3) {
+                        String path = strArr[2];
 
-                    try {
-                        model.load(path);
-                    } catch (IOException | ParseException e) {
-                        e.printStackTrace();
+                        try {
+                            model.load(path);
+                        } catch (IOException | ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        System.out.println("\nReserve copy was successfully loaded!");
+                        showAllStuds();
+                        showAllGroups();
                     }
-
-                    System.out.println("\nReserve copy was successfully loaded!");
-                    showAllStuds();
-                    showAllGroups();
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 case "save resCopy" -> {
-                    String path = strArr[2];
+                    if (strArr.length == 3) {
+                        String path = strArr[2];
 
-                    model.save(path);
+                        model.save(path);
 
-                    System.out.println("\nReserve copy was successfully saved!\n");
+                        System.out.println("\nReserve copy was successfully saved!\n");
+                    }
+                    else {
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                    }
                 }
                 default -> {
                     if (str.equals("exit"))
                         System.out.println("\nExiting...\n");
                     else
-                        System.out.println("\nInvalid command!\n");
+                        System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
                 }
             }
 
