@@ -179,11 +179,18 @@ public class Model implements Serializable {
     }
 
     public void load(String resCopyPath) throws IOException, ParseException {
+        FileInputStream fis = new FileInputStream(resCopyPath);
+        ObjectInputStream ois = new ObjectInputStream(fis);
 
         JSONParser parser = new JSONParser();
-        FileReader reader = new FileReader(resCopyPath);
 
-        JSONObject rootJsonObject = (JSONObject) parser.parse(reader);
+        JSONObject rootJsonObject = null;
+
+        try {
+            rootJsonObject = (JSONObject) parser.parse(((JSONObject) ois.readObject()).toJSONString());
+        } catch (ParseException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         JSONArray groupJSONArr = (JSONArray) rootJsonObject.get("groups");
 
@@ -222,8 +229,6 @@ public class Model implements Serializable {
 
         studIdGen = BigInteger.valueOf(studentList.size());
         groupIdGen = BigInteger.valueOf(groupList.size());
-
-        reader.close();
 
         write(this.path);
     }
