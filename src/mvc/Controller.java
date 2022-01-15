@@ -66,12 +66,17 @@ public class Controller {
                     if (strArr.length == 3) {
                         BigInteger studId = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                        System.out.println();
+                        if (studId.compareTo(BigInteger.ZERO) > 0) {
+                            System.out.println();
 
-                        view.showStudHeader();
-                        view.showStud(model.getStudent(studId).toStr());
+                            view.showStudHeader();
+                            view.showStud(model.getStudent(studId).toStr());
 
-                        System.out.println();
+                            System.out.println();
+                        }
+                        else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -81,12 +86,17 @@ public class Controller {
                     if (strArr.length == 3) {
                         BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                        System.out.println();
+                        if (groupId.compareTo(BigInteger.ZERO) > 0) {
+                            System.out.println();
 
-                        view.showGroupHeader();
-                        view.showGroup(model.getGroup(groupId).toStr());
+                            view.showGroupHeader();
+                            view.showGroup(model.getGroup(groupId).toStr());
 
-                        System.out.println();
+                            System.out.println();
+                        }
+                        else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -98,29 +108,38 @@ public class Controller {
 
                         BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[5]));
 
-                        Student stud = new Student(fio, groupId);
+                        if (groupId.compareTo(BigInteger.ZERO) > 0) {
+                            Student stud = new Student(fio, groupId);
 
-                        model.addStudent(stud);
+                            model.addStudent(stud);
 
-                        System.out.println("\nStudent was successfully added!");
-                        showAllStuds();
+                            System.out.println("\nStudent was successfully added!");
+                            showAllStuds();
+                        }
+                        else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
                     }
                 }
                 case "add group" -> {
-                    if (strArr.length == 6) {
+                    if (strArr.length == 4) {
                         Integer groupNum = Integer.valueOf(strArr[2]);
 
-                        String fac = strArr[3];
+                        if(groupNum > 0) {
+                            String fac = strArr[3];
 
-                        Group group = new Group(groupNum, fac);
+                            Group group = new Group(groupNum, fac);
 
-                        model.addGroup(group);
+                            model.addGroup(group);
 
-                        System.out.println("\nGroup was successfully added!");
-                        showAllGroups();
+                            System.out.println("\nGroup was successfully added!");
+                            showAllGroups();
+                        } else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -129,17 +148,20 @@ public class Controller {
                 case "change student" -> {
                     if (strArr.length == 7) {
                         BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
-
-                        String fio = strArr[3] + " " + strArr[4] + " " + strArr[5];
-
                         BigInteger groupId = BigInteger.valueOf(Long.parseLong(strArr[6]));
 
-                        Student stud = new Student(fio, groupId);
+                        if(changeId.compareTo(BigInteger.ZERO) > 0 && groupId.compareTo(BigInteger.ZERO) > 0) {
+                            String fio = strArr[3] + " " + strArr[4] + " " + strArr[5];
 
-                        model.setStudent(changeId, stud);
+                            Student stud = new Student(fio, groupId);
 
-                        System.out.println("\nStudent was successfully changed!");
-                        showAllStuds();
+                            model.setStudent(changeId, stud);
+
+                            System.out.println("\nStudent was successfully changed!");
+                            showAllStuds();
+                        } else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -148,17 +170,20 @@ public class Controller {
                 case "change group" -> {
                     if (strArr.length == 7) {
                         BigInteger changeId = BigInteger.valueOf(Long.parseLong(strArr[2]));
-
                         Integer groupNum = Integer.valueOf(strArr[3]);
 
-                        String fac = strArr[4];
+                        if(changeId.compareTo(BigInteger.ZERO) > 0 && groupNum > 0) {
+                            String fac = strArr[4];
 
-                        Group group = new Group(groupNum, fac);
+                            Group group = new Group(groupNum, fac);
 
-                        model.setGroup(changeId, group);
+                            model.setGroup(changeId, group);
 
-                        System.out.println("\nGroup was successfully changed!");
-                        showAllGroups();
+                            System.out.println("\nGroup was successfully changed!");
+                            showAllGroups();
+                        } else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -168,10 +193,14 @@ public class Controller {
                     if (strArr.length == 3) {
                         BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                        model.deleteStudent(id);
+                        if(id.compareTo(BigInteger.ZERO) > 0) {
+                            model.deleteStudent(id);
 
-                        System.out.println("\nStudent was successfully deleted!");
-                        showAllStuds();
+                            System.out.println("\nStudent was successfully deleted!");
+                            showAllStuds();
+                        } else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -181,10 +210,15 @@ public class Controller {
                     if (strArr.length == 3) {
                         BigInteger id = BigInteger.valueOf(Long.parseLong(strArr[2]));
 
-                        model.deleteGroup(id);
+                        if(id.compareTo(BigInteger.ZERO) > 0) {
+                            model.deleteGroup(id);
 
-                        System.out.println("\nGroup was successfully deleted!");
-                        showAllGroups();
+                            System.out.println("\nGroup was successfully deleted!");
+                            showAllGroups();
+                        } else {
+                            System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
+                        }
+
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
@@ -196,13 +230,14 @@ public class Controller {
 
                         try {
                             model.load(path);
+                            System.out.println("\nReserve copy was successfully loaded!");
+                            showAllStuds();
+                            showAllGroups();
                         } catch (IOException | ParseException e) {
+                            System.out.println("Not correct load path!");
                             e.printStackTrace();
                         }
 
-                        System.out.println("\nReserve copy was successfully loaded!");
-                        showAllStuds();
-                        showAllGroups();
                     }
                     else {
                         System.out.println("\nInvalid command! Type \"help\" to see existing commands!\n");
